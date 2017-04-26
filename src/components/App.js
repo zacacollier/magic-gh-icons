@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import ThreeJS from './ThreeJS';
 import GitHubStats from './GitHubStats';
 import '../styles/App.css';
 
@@ -29,13 +30,14 @@ export default class App extends Component {
       .catch(err => console.error(err))
   }
   render() {
+        // <GitHubStats
+        //   commits={this.state.commits}
+        //   urlStub={this.state.url}
+        // />
     return (
-      <div className="App">
-        <GitHubStats
+        <ThreeJS
           commits={this.state.commits}
-          urlStub={this.state.url}
         />
-      </div>
     )
   }
 }
