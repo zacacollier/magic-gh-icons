@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 // import PropTypes from 'prop-types'
 import * as Three from 'three';
 import React3 from 'react-three-renderer';
@@ -11,6 +12,8 @@ export default class ThreeJS extends Component {
       timer: Date.now() * 0.00001,
       cubeRotation: new Three.Euler(),
       position: new Three.Vector3(0, 0, 50),
+      url: (user) => `https://api.github.com/users/${user}/events`,
+      commits: [],
     }
     this.cameraPosition = new Three.Vector3(0, 0, 5);
     this.directionalLightPosition = new Three.Vector3(0, 1, 0);
@@ -26,8 +29,24 @@ export default class ThreeJS extends Component {
     }
   }
 
+  componentWillMount() {
+    axios.get(this.state.url('zacacollier'))
+      .then(res => this.setState(
+        {
+          ...this.state,
+          commits:
+            [
+              ...res.data
+                .filter(event => event.payload.commits)
+                .map(event => event),
+            ]
+          }
+        )
+      )
+      .catch(err => console.error(err))
+  }
   render(props) {
-    console.log(props)
+    console.log(this.state)
     const {
       timer,
       position,
