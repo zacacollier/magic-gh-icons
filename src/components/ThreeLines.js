@@ -8,7 +8,9 @@ function drawLines(commits) {
 
 const ThreeLines = ({ commits }) => {
   return (
-    commits && drawLines(commits)
+    <div>
+    { console.log(commits) }
+    </div>
   )
 }
 

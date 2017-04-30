@@ -46,7 +46,6 @@ export default class ThreeJS extends Component {
       .catch(err => console.error(err))
   }
   render(props) {
-    console.log(this.state)
     const {
       timer,
       position,
@@ -61,6 +60,7 @@ export default class ThreeJS extends Component {
     )
     return (
       <div>
+        { this.state.commits.length ? <ThreeLines commits={this.state.commits} /> : <div></div> }
         <React3
           mainCamera="camera"
           width={width}
