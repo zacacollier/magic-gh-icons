@@ -34,6 +34,8 @@ export default class App extends Component {
         //   commits={this.state.commits}
         //   urlStub={this.state.url}
         // />
+    // TODO: get that async shit together
+    console.log(this.state.commits)
     return (
         <ThreeJS
           commits={this.state.commits}
