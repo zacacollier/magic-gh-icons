@@ -29,22 +29,22 @@ export default class ThreeJS extends Component {
     }
   }
 
-  componentWillMount() {
-    axios.get(this.state.url('zacacollier'))
-      .then(res => this.setState(
-        {
-          ...this.state,
-          commits:
-            [
-              ...res.data
-                .filter(event => event.payload.commits)
-                .map(event => event),
-            ]
-          }
-        )
-      )
-      .catch(err => console.error(err))
-  }
+ //  componentWillMount() {
+ //    axios.get(this.state.url('zacacollier'))
+ //      .then(res => this.setState(
+ //        {
+ //          ...this.state,
+ //          commits:
+ //            [
+ //              ...res.data
+ //                .filter(event => event.payload.commits)
+ //                .map(event => event),
+ //            ]
+ //          }
+ //        )
+ //      )
+ //      .catch(err => console.error(err))
+ //  }
   render(props) {
     const {
       timer,
@@ -58,9 +58,11 @@ export default class ThreeJS extends Component {
       timer * 2.5,
       0
     )
+    // TODO: put this back once GH API auth is fixed
+    // { this.state.commits.length ? <ThreeLines commits={this.state.commits} /> : <div></div> }
     return (
       <div>
-        { this.state.commits.length ? <ThreeLines commits={this.state.commits} /> : <div></div> }
+        <ThreeLines />
         <React3
           mainCamera="camera"
           width={width}
